@@ -1,5 +1,4 @@
 <!-- Dashboard -->
-<!-- Marketplace -->
 <!-- Consumer Payment Gateway -->
 
 <!DOCTYPE html>
@@ -30,9 +29,40 @@
 			</div>
 		</div>
 
-		<div id="glances">
-			<div class="glance-card" id="sales">
+		<div id="sidebar"></div>
 
+		<div id="infobar"></div>
+
+		<div id="dashboard">
+			<div id="analytics">
+				<div id="analytics-header">
+					<p id="analytics-title">At a glance...</p>
+				</div>
+				<div id="analytics-db">
+					<div class="adb-card" id="total-payments">
+						<p class="adb-card-icon"><i class="fas fa-receipt"></i></p>
+						<p class="adb-card-metric"><span style="font-size: 18px;color: #27282b;padding-right:5px;">$</span>2.12K</p>
+						<p class="adb-card-desc">Total Payments</p>
+					</div>
+
+					<div class="adb-card" id="sales">
+						<p class="adb-card-icon"><i class="fas fa-cash-register"></i></p>
+						<p class="adb-card-metric"><span style="font-size: 18px;color: #27282b;padding-right:5px;">$</span>3.56K</p>
+						<p class="adb-card-desc">Sales Volume</p>
+					</div>
+
+					<div class="adb-card" id="mrr">
+						<p class="adb-card-icon"><i class="fas fa-funnel-dollar"></i></p>
+						<p class="adb-card-metric"><span style="font-size: 18px;color: #27282b;padding-right:5px;">$</span>12.5K</p>
+						<p class="adb-card-desc">Recurring Revenue</p>
+					</div>
+
+					<div class="adb-card" id="inventory">
+						<p class="adb-card-icon"><i class="fas fa-dolly-flatbed"></i></p>
+						<p class="adb-card-metric">67.8<span style="padding-left:5px;font-size: 18px;color: #27282b;">%</span></p>
+						<p class="adb-card-desc">Inventory</p>
+					</div>
+				</div>
 			</div>
 		</div>
     </body>
