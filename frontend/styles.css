@@ -97,7 +97,7 @@ a {
 
 #analytics {
     width: 95%;
-    height: 300px;
+    height: auto;
     margin: 20px auto;
 }
 
@@ -112,7 +112,7 @@ a {
 
 #analytics #analytics-header #analytics-title {
     font-size: 22px;
-    margin: auto 4%;
+    margin: auto 3%;
 }
 
 #analytics #analytics-db {
@@ -135,10 +135,11 @@ a {
     flex-direction: column;
     justify-content: center;
     transition: 0.5s;
+    margin: 10px;
 }
 
 .adb-card .adb-card-icon {
-    font-size: 35px;
+    font-size: 30px;
     margin: 10px 0 5px 0;
     padding: 0;
     border-radius: 100%;
@@ -162,7 +163,7 @@ a {
 
 .adb-card .adb-card-metric {
     font-family: Avenir Next;
-    font-size: 55px;
+    font-size: 45px;
     font-weight: 700;
     padding: 0 0 10px 0;
     margin: 0;
@@ -174,3 +175,5 @@ a {
     font-size: 19px;
     color: #27282b;
 }
+
+/* ---------------------------------------------------------------------------------------------------------------- */
