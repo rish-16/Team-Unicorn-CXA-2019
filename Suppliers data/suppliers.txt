@@ -1,0 +1,87 @@
+Allied Specialty Compounds Pte Ltd,1.3384379,103.9345211
+Asahi Kasei Plastics Singapore Pte Ltd (Site Office),1.2549696,103.6988944
+Asahi Kasei Plastics Singapore Pte Ltd (Town Office),1.2549696,103.6988944
+Asahi Kasei Plastics Singapore Pte Ltd (Shenton),1.273047,103.844899252657
+B S Colours Pte Ltd,1.3596089,103.8417656
+Baerlocher Far East Pte Ltd,1.3011611,103.8617294
+BASF Singapore Pte Ltd,1.29541765,103.858445698116
+Behn Meyer & Co (Pte) Ltd,1.2755481,103.7973737
+Belges Materials Supply Pte Ltd,1.3570217,103.7624071
+Beta Channel Pte Ltd,1.32839105,103.753254618115
+Borouge Pte Ltd,1.285739,103.84778985
+Borouge Pte Ltd (Aracadia Road),1.330586,103.8151091
+Borouge Pte Ltd (Coronation Road),1.3161729,103.7904523
+Borouge Pte Ltd (Walshe Road),1.3124619,103.827677
+BP Singapore Pte Ltd,1.2645759,103.8179137
+Central Mercantile Corporation (S) Ltd,1.3874194,103.8284
+Century Steel Pte Ltd,1.319072,103.892618
+Chemapol Asia Pte Ltd,1.2772192,103.8442158
+Chemicrete Enterprises Pte Ltd,1.44231785,103.8365374
+Chuan Durn Plastic Industries Pte Ltd,1.3317781,103.704503824993
+Clamor Enterprises Pte Ltd,1.3014771,103.837893402505
+Comit Plastic Pte Ltd,1.3770276,103.8412582
+Da Lu General Trading,1.40334345,103.745179417702
+DSM Singapore Industrial Pte Ltd,1.2871869,103.84518153701
+Du Pont Co (S) Pte Ltd,1.2650267,103.8193848
+Du Pont Co (S) Pte Ltd (Sakra Ave),1.2649306,103.6967424
+Emeraude Pte Ltd,1.4596393,103.8023371
+Eurochem Technologies Corporation Pte Ltd,1.2774367,103.849384988209
+Eveready Manufacturing Pte Ltd (Marsiling Industrial Est),1.31873665,103.6462746
+Eveready Manufacturing Pte Ltd (Tuas South Street),1.31873665,103.6462746
+Excelpro Products & Services Pte Ltd,1.3637632,103.829205071154
+GE Pacific Pte Ltd,1.2636951,103.8203755
+GE Pacific Pte Ltd (GE Tower),17.4412252,78.6494815
+Great China Chemicals & Plastics Pte Ltd,1.2993986,103.8414543
+Hock Lim Plastic Industry & Traders,1.3564954,103.8961152
+Hong Seh Co (Pte) Ltd,1.326549,103.688379812494
+Inabata Singapore Pte Ltd,1.273047,103.844899252657
+Intermin Enterprises Pte Ltd,1.2774367,103.849384988209
+Intraco Ltd,1.3645805,103.8293461
+Kai Lee Co,1.454405,103.8104032
+Kwong Yu Industries (S) Pte Ltd,1.3276605,103.718394
+Lam Seng Hang Co Pte Ltd,1.28805475,103.8476139
+Lee Soon Seng Plastic Industries Sdn Bhd,1.36048065,103.964262247487
+Leeksin Trading Pte Ltd,1.32513575,103.878878170107
+Lim Teck Lee (Pte) Ltd,1.2873411,103.848877
+Linkers (Far East) Pte Ltd,1.2772417,103.8486417
+Liong Hup Soon Trading Pte Ltd,1.3325984,103.7142205
+Lam Seng Hang Co Pte Ltd (Linkpoint Pl),1.3293722,103.6482364
+Lim Teck Lee (Pte) Ltd (Kewalram Hse),1.36384385,103.82900726246
+Maya Manufacturing & Trading Co (Pte) Ltd,1.2874477,103.8478653
+Maya Manufacturing & Trading Co (Pte) Ltd (Sg Kadut),1.2904753,103.8520359
+Mazda Plastic Fty (Pte) Ltd,1.3276605,103.718394
+MEP Singapore Pte Ltd,1.27469415,103.846677185533
+Mitsubishi Gas Chemical (S) Pte Ltd,1.2835947,103.851568
+Mitsui Phenols Singapore Pte Ltd,1.2649306,103.6967424
+Nansin (1964) Pte Ltd,1.28671295,103.840156862184
+Nissen Chemical Singapore Pte Ltd,1.2636951,103.8203755
+Nagase Singapore (Pte) Ltd,1.32839105,103.753254618115
+Nansin (1964) Pte Ltd (Parklane Shopping Mall),1.3003505,103.8495358
+Omni-Plus System Pte Ltd,1.3196362,103.865008807924
+Paceco Industrial Supplies Pte Ltd,1.33714,103.75427
+Pankti International Pte Ltd,1.2792936,103.848419724418
+Plaspulp Union Co,1.3176074,103.646120343701
+Polyplastics Asia Pacific Singapore Pte Ltd,1.29463,103.859773649048
+Polyvinyl Industrial Services Pte Ltd,-6.6254204,105.84368061198
+Polywide Pte Ltd,1.33299185,103.6382792
+R&P (Pte) Ltd,1.2626174,103.6792673
+Sanyo-Ik Color (Pte) Ltd,1.3273529,103.7536741
+Scintronix Corporation Ltd,1.32277605,103.8793161
+Singapore Polymer Corporation (Pte) Ltd,1.3093625,103.6977783
+Singtai Plastic Industries (Pte) Ltd,1.33021725,103.692955243836
+Singtai Plastic Industries (Pte) Ltd (Eunos Technolink),1.3218577,103.8802228
+Solvay Singapore Pte Ltd,1.301141,103.7930604
+Ssangleong Bulkhandling Pte Ltd,1.3116753,103.70189672327
+Star Overseas Pte Ltd,1.3651251,103.74789
+Sumidurez Singapore Pte Ltd,17.4412252,78.6494815
+Sunnyjaya Engineering,52.5126297,5.0645857
+Syarikat Nam Ah Sdn Bhd,1.2904753,103.8520359
+TCR (S) Pte Ltd,1.2870554,103.8407943277
+Tecnik Polymers And Colourants Pte Ltd,1.3350899,103.8860018
+The Polyolefin Co (S) Pte Ltd,1.2984308,103.858829520702
+Titan Trading Corp Ltd,1.2774367,103.849384988209
+Toyota Tsusho Asia Pacific Pte Ltd,1.3003036,103.8577197
+United Raw Material Pte Ltd,1.3327225,103.8943094
+Wah Sin Industrial Pte Ltd,1.3251788,103.8505499
+Wee Tee Tong Chemicals Pte Ltd,52.5128808,5.0654451
+Weschem Technologies Sdn Bhd,1.2904753,103.8520359
