@@ -10,51 +10,31 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const searchBar = document.getElementById('searchbar');
+    const searchRes = document.getElementById('search-results');
     
     var plotPoints = [];
     var electricPoints = [];
     var rubberAndPlastics = [];
+    var textiles = []
+    var chemical = []
+    var agriculture = []
 
-    function getData(data) {
-        var positions = data.val();
-        var keys = Object.keys(positions); 
-    
-        for(var i = 0; i < keys.length; i++) {
-            var k = keys[i]
-            var newPoint = {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [parseFloat(positions[k].lon), parseFloat(positions[k].lat)]
-                },
-                "properties": {
-                    "title": positions[k].name,
-                    "icon": "marker", 
-                    "description": positions[k].info
-                }
-            }
-            plotPoints.push(newPoint)
-        }
-    }
+    var elecRef = firebase.database().ref('Malaysian Electric Suppliers').child('Company'); 
+    elecRef.on('value', snapshot => {
+        snapshot.forEach(element => {
+            cur = element.val()
+            electricPoints.push([parseFloat(cur[3]), parseFloat(cur[4])])
+        });
+    })
 
-    var ref = firebase.database().ref('Malaysian Electric Suppliers').child('Company'); 
-    ref.on('value', getData, errorData); 
-
-    function errorData(err) {
-        console.log("Error!") 
-        console.log(err)
-    }
-    
-    function refresh() {
-        location.reload(forceGet=true)
-    }
-    
     mapboxgl.accessToken = 'pk.eyJ1IjoibC15IiwiYSI6ImNqeHNjajVpejBpZjAzaHFveHQ2bGdocGYifQ.rqNTiie-ua4VjuyDYNH6JA'; // replace this with your access token
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [101.6869, 3.1390], //centre of singapore
-        zoom: 10
+        center: [101.6129, 3.1568], //centre of singapore
+        zoom: 12
     }); 
 
     function addTraffic() {
@@ -67,58 +47,74 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    map.on('load', function () {
+    function updateResult(query) {
+        electricPoints.map(function(algo){
+            query.toString().split(" ").map(function(word){
+                if (algo.toString().toLowerCase().indexOf(word[1].toLowerCase()) != -1){
+                    var newCell = document.createElement('div')
+                    newCell.classList  = 'res-cell'
+                    var newCellP = document.createElement('p')
+                    newCellP.classList = 'res-cell-text'
+                    var newCellD = document.createElement('p')
+                    newCellD.classList = 'res-cell-desc'
+                    var newCellN = document.createElement('p')
+                    newCellN.classList = 'res-cell-num'
+                    
+                    var cur = Object(algo);
+                    newCellP.innerHTML = cur[0]
+                    newCellD.innerHTML = cur[1]
+                    newCellN.innerHTML = '<a href="tel:' + cur[2] + '">'  + cur[2] + '</a>'
+                    
+                    newCell.appendChild(newCellP)
+                    newCell.appendChild(newCellD)
+                    newCell.appendChild(newCellN)
+                    searchRes.appendChild(newCell)
+                }
+            })
+        })
+    }
+
+    map.on('load', function() {
         map.addSource('trafficSource', {
             type: 'vector',
             url: 'mapbox://mapbox.mapbox-traffic-v1'
         });
 
-        addTraffic()
-        console.log(plotPoints)
+        // addTraffic()
 
-        map.addLayer({
-            "id": "points",
-            "type": "symbol",
-            "source": {
-                "type": "geojson",
-                "data": {
-                    "type": "FeatureCollection",
-                    "features": plotPoints
-                }
-            },
-            "layout": {
-                "icon-image": "{icon}-15",
-                "text-field": "{title}",
-                "text-font": ["Avenir Next"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top"
-            }
+        searchBar.addEventListener('input', function(e) {
+            console.log(e.target.value)
+            updateResult(e.target.value);
         });
-    });
 
-    function addPoint() {
-        if (markerOn) {
-            var pos = marker.getLngLat();
-            var name = document.getElementById('name').value;
-            var des = document.getElementById('description').value; 
-            console.log(pos, name) 
-            var point = {
-                x : pos.lng, 
-                y : pos.lat, 
-                name : name, 
-                description: des
-            };
-            ref.push(point); //push a new point on to the positions database
-            markerOn = false;
-            marker.remove();
-            location.reload(forceGet=true)
+        // map.addLayer({
+        //     "id": "points",
+        //     "type": "FEature",
+        //     "source": {
+        //         "type": "geojson",
+        //         "data": {
+        //             "type": "FeatureCollection",
+        //             "features": electricPoints
+        //         }
+        //     },
+        //     properties: {
+        //         'marker-color': '#3bb2d0',
+        //         'marker-size': 'large',
+        //         'marker-symbol': 'rocket'
+        //     }
+        // });
+
+        for (var i = 0; i < electricPoints.length; i++) {
+            var cur_loc = electricPoints[i]
+            var mkr = new mapboxgl.Marker().setLngLat([cur_loc["geometry"]["coordinates"]])
+            .addTo(map);
         }
-    }
+    });
 
     map.on('click', function(e){
         var features = map.queryRenderedFeatures(e.point, {
             layers: ['points'] // replace this with the name of the layer
-            });
+        });
         if (!features.length) {
             return;
         }
