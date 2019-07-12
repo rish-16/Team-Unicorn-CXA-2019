@@ -1,17 +1,19 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyBqzYAoXOcFoJ9Ihgx7ufrjHHr85umFmq4",
-    authDomain: "mapbox-cxa.firebaseapp.com",
-    databaseURL: "https://mapbox-cxa.firebaseio.com",
-    projectId: "mapbox-cxa",
-    storageBucket: "mapbox-cxa.appspot.com", 
-    messagingSenderId: "744392302337",
-    appId: "1:744392302337:web:fbbda17b7d71f325"
+const firebaseConfig = {
+    apiKey: "AIzaSyBY8H2AtuzMXVX7IevYyn0Wr8PdiYaIrGU",
+    authDomain: "test-a1287.firebaseapp.com",
+    databaseURL: "https://test-a1287.firebaseio.com",
+    projectId: "test-a1287",
+    storageBucket: "test-a1287.appspot.com",
+    messagingSenderId: "494992214705",
+    appId: "1:494992214705:web:ace9e12c8d31ca48"
 };
 firebase.initializeApp(firebaseConfig);
 
 document.addEventListener('DOMContentLoaded', () => {
     
     var plotPoints = [];
+    var electricPoints = [];
+    var rubberAndPlastics = [];
 
     function getData(data) {
         var positions = data.val();
@@ -23,19 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [positions[k].x, positions[k].y]
+                    "coordinates": [parseFloat(positions[k].lon), parseFloat(positions[k].lat)]
                 },
                 "properties": {
                     "title": positions[k].name,
                     "icon": "marker", 
-                    "description": positions[k].description
+                    "description": positions[k].info
                 }
             }
             plotPoints.push(newPoint)
         }
     }
 
-    var ref = firebase.database().ref('rawMaterial'); 
+    var ref = firebase.database().ref('Malaysian Electric Suppliers').child('Company'); 
     ref.on('value', getData, errorData); 
 
     function errorData(err) {
@@ -51,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [103.808053, 1.351616], //centre of singapore
-        zoom: 12
+        center: [101.6869, 3.1390], //centre of singapore
+        zoom: 10
     }); 
 
     function addTraffic() {
@@ -72,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         addTraffic()
+        console.log(plotPoints)
 
         map.addLayer({
             "id": "points",
@@ -86,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "layout": {
                 "icon-image": "{icon}-15",
                 "text-field": "{title}",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-font": ["Avenir Next"],
                 "text-offset": [0, 0.6],
                 "text-anchor": "top"
             }

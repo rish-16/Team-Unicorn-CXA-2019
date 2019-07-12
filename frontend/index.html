@@ -19,15 +19,15 @@
 		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 		<script src="app.js"></script>
 
-        <title>Dashboard | CXA 2019</title>
+        <title>Cruze | Dashboard</title>
     </head>
 
     <body>
 		<div id="header">
-			<p id="logo">Data<span>Drive</span></p>
+			<p id="logo">Cr<span>uze</span></p>
 			<div id="nav">
 				<p style="color: #2f3542;font-weight: bold;" id="dashboard-page" onclick="window.location='index.html'">Dashboard</p>
-				<!-- <p id="marketplace-page" onclick="window.location='marketplace.html'">Marketplace</p> -->
+				<p id="marketplace-page" onclick="window.location='services.html'">Services</p>
 				<p id="resource-map-page" onclick="window.location='resources.html'">Resources</p>
 			</div>
 			<div id="user">
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 
-		<div id="infobar"></div>
+		<!-- <div id="infobar"></div> -->
 
 		<div id="dashboard">
 			<div id="analytics">
@@ -75,11 +75,52 @@
 				</div>
 				<div id="trd-catalogue">
 					<div class="trd-card">
-						<div class="trd-top">
-							<img alt="img" class="trd-top-img">
-						</div>
+						<div class="trd-top" id="trd-1"></div>
 						<div class="trd-bottom">
-							<p class="trd-title"></p>
+							<p class="trd-title">SUNNERSTA</p>
+							<p class="trd-desc">
+								293 pcs
+							</p>
+						</div>
+					</div>
+
+					<div class="trd-card">
+						<div class="trd-top" id="trd-2"></div>
+						<div class="trd-bottom">
+							<p class="trd-title">HANFORD</p>
+							<p class="trd-desc">
+								168 pcs
+							</p>
+						</div>
+					</div>
+
+					<div class="trd-card">
+						<div class="trd-top" id="trd-3"></div>
+						<div class="trd-bottom">
+							<p class="trd-title">KALAVKAD</p>
+							<p class="trd-desc">
+								121 pcs
+							</p>
+						</div>
+					</div>
+
+					<div class="trd-card">
+						<div class="trd-top" id="trd-4"></div>
+						<div class="trd-bottom">
+							<p class="trd-title">TORNVIKEN</p>
+							<p class="trd-desc">
+								938 pcs
+							</p>
+						</div>
+					</div>
+
+					<div class="trd-card">
+						<div class="trd-top" id="trd-5"></div>
+						<div class="trd-bottom">
+							<p class="trd-title">INSJON</p>
+							<p class="trd-desc">
+								674 pcs
+							</p>
 						</div>
 					</div>
 				</div>
@@ -90,7 +131,30 @@
 					<p id="sent-title">Reach and Impressions</p>
 				</div>
 				<div id="sent-container">
-					
+					<div class="sent-card" id="ovrallsent">
+						<p class="sent-card-icon"><i class="fas fa-laugh"></i></p>
+						<p class="sent-card-metric">0.952</p>
+						<p class="sent-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Overall Sentiment</p>
+						<p class="sent-card-legend">-1 to 1</p>
+					</div>
+
+					<div class="sent-card" id="reviewstdy">
+						<p class="sent-card-icon"><i class="fas fa-comments"></i></p>
+						<p class="sent-card-metric">1562</p>
+						<p class="sent-card-desc"><i style="color: #ff6b6b;padding-right: 10px;font-size: 22px;" class="fas fa-caret-down"></i> Reviews Today</p>
+					</div>
+
+					<div class="sent-card" id="tweets">
+						<p class="sent-card-icon"><i class="fab fa-twitter"></i></p>
+						<p class="sent-card-metric">471</p>
+						<p class="sent-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Tweets</p>
+					</div>
+
+					<!-- <div class="sent-card" id="">
+						<p class="sent-card-icon"><i class="fas fa-dolly-flatbed"></i></p>
+						<p class="sent-card-metric"></p>
+						<p class="sent-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Inventory</p>
+					</div> -->
 				</div>
 			</div>
 
