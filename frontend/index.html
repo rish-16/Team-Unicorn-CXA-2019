@@ -12,6 +12,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap&subset=latin-ext" rel="stylesheet">
 		<link rel="stylesheet" href="styles.css">
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="PapaParse-5.0.0/papaparse.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
 		<script src="app.js"></script>
 
@@ -36,7 +38,7 @@
 		<div id="dashboard">
 			<div id="analytics">
 				<div id="analytics-header">
-					<p id="analytics-title">At a glance. . .</p>
+					<p id="analytics-title">At a glance</p>
 				</div>
 				<div id="analytics-db">
 					<div class="adb-card" id="total-payments">
@@ -57,13 +59,45 @@
 						<p class="adb-card-desc"><i style="color: #ff6b6b;padding-right: 10px;font-size: 22px;" class="fas fa-caret-down"></i> Recurring Revenue</p>
 					</div>
 
-					<div class="adb-card" id="inventory">
+					<div class="adb-card" id="inv">
 						<p class="adb-card-icon"><i class="fas fa-dolly-flatbed"></i></p>
 						<p class="adb-card-metric">67.8<span style="padding-left:5px;font-size: 18px;color: #27282b;">%</span></p>
 						<p class="adb-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Inventory</p>
 					</div>
 				</div>
 			</div>
+
+			<div id="inventory">
+				<div id="inventory-header">
+					<p id="inv-title">From your Inventory</p>
+					<button id="inv-upload">Upload CSV</button>
+					<input type="file" style="display: none;" id="inv-file">
+				</div>
+				<div id="inv-db">
+
+				</div>
+			</div>
 		</div>
-    </body>
+	</body>
+	
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const CSVupload = document.getElementById('inv-upload');
+			const fileBtn = document.getElementById('inv-file');
+
+			function handleFile() {
+				const fileList = this.files;
+				Papa.parse(fileList[0], {
+					complete: function(res) {
+						console.log(res.data)
+					}
+				})
+			}
+
+			CSVupload.addEventListener('click', () => {
+				fileBtn.click();
+				fileBtn.addEventListener('change', handleFile, false);
+			})
+		})
+	</script>
 </html>
