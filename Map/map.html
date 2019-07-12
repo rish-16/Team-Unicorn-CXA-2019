@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
+        <link href=’https://api.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel=’stylesheet’ />
+        <style>
+            .coordinates {
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            position: absolute;
+            bottom: 40px;
+            left: 10px;
+            padding:5px 10px;
+            margin: 0;
+            font-size: 11px;
+            line-height: 18px;
+            border-radius: 3px;
+            display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="textbox" id="name">
+            <span onclick="addPoint()" class="addBtn">Add</span>
+            <span onclick="refresh()" class="refresh">Refresh</span>
+            <span onclick="addDragMarker()" class="addDragPoint">AddDragPoint</span>
+        </div>
+        <div id='map'></div>
+        <pre id='coordinates' class='coordinates'></pre>
+        <canvas id="glCanvas" width="640" height="480"></canvas>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script> 
+        <!-- Add Firebase products that you want to use -->
+        <script src="storage.js" type="text/javascript"></script>
+    </body>
+</html>
