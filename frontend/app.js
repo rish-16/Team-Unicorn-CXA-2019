@@ -11,111 +11,70 @@ firebase.initializeApp(firebaseConfig);
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('App loaded')
-    const CSVupload = document.getElementById('inv-upload');
-    const fileBtn = document.getElementById('inv-file');
 
-    const spreadsheetContent = document.getElementById('spreadsheet-cells')
-    const DBref = firebase.database().ref().child('Inventory')
+    const DBref = firebase.database().ref()
 
-    const understocked = []
+    const sentGrid = document.getElementById('sent-grid')
+    sentGrid.style.display = 'none';
+    function viewWall() {
+        sentGrid.style.display = 'flex'
+        DBref.child('tweets').on('value', (snapshot) => {
+            snapshot.forEach(child => {
+                var cur = child.val()
+                var newCell = document.createElement('div')
+                newCell.classList += 'grid-cell'
+                var newCellP = document.createElement('p')
+                newCellP.classList += 'grid-cell-content'
+                
+                var colours = ['#feca57', '#ff6b6b', '#00b894', '#54a0ff', '#feca57', '#ff6b6b', '#00b894', '#54a0ff', '#feca57', '#ff6b6b', '#00b894', '#54a0ff']
+                newCell.style.backgroundColor = colours[Math.floor(Math.random()*colours.length)];
 
-    function uploadInv() {
-        spreadsheetContent.innerHTML = ''
-        DBref.on('value', (snapshot) => {
-            snapshot.forEach(element => {
-                var row = document.createElement('div')
-                row.classList += 'ss-row'
-
-                element.forEach(cell => {
-                    var newCell = document.createElement('ss-cell')
-                    var newCellTitle = document.createElement('p')
-                    newCell.classList += 'cell'
-                    newCellTitle.innerText = cell.val()
-                    newCellTitle.classList += 'cell-title'
-                    newCell.appendChild(newCellTitle)
-                    row.appendChild(newCell)
+                newCell.appendChild(newCellP)
+                sentGrid.appendChild(newCell)
+    
+                var typewriter = new Typewriter(newCellP, {
+                    loop: true
                 });
-
-                if (element.val()[1] < element.val()[2]) {
-                    var statusCell = document.createElement('div')
-                    statusCell.classList += 'cell'
-                    var status = document.createElement('div')
-                    status.classList += 'cell-status'
-                    status.style.backgroundColor = '#ff6b6b'
-                    statusCell.appendChild(status)
-                    row.appendChild(statusCell)
-                    understocked.push(element.val()[0])
-                    console.log(understocked)
-                } else {
-                    var statusCell = document.createElement('div')
-                    statusCell.classList += 'cell'
-                    var status = document.createElement('div')
-                    status.classList += 'cell-status'
-                    status.style.backgroundColor = '#1dd1a1'
-                    statusCell.appendChild(status)
-                    row.appendChild(statusCell)
-                }
-
-                spreadsheetContent.appendChild(row)
-            });
-        })
+    
+                var randomPause = Math.floor((Math.random() * 2000) + 500);
+                
+                typewriter.pauseFor(randomPause)
+                    .typeString(cur['content'])
+                    .pauseFor(randomPause)
+                    .deleteAll()
+                    .pauseFor(randomPause)
+                    .start();
+            })
+        })   
     }
+    viewWall();
 
-    uploadInv()
+    // var tweets = []
+    // for (var i = 0; i < 16; i++) {
+    //     tweets.push('hello. this is a tweet ' + i)
+    // }
+    // for (var i = 0; i < tweets.length - 1; i++) {
+    //     var cur = tweets[i]
+    //     var newCell = document.createElement('div')
+    //     newCell.classList += 'grid-cell'
+    //     var newCellP = document.createElement('p')
+    //     newCellP.classList += 'grid-cell-content'
 
-    function handleFile() {
-        const fileList = this.files;
-        Papa.parse(fileList[0], {
-            complete: function(res) {
-                var data = res.data;
-                data = data.splice(1);
+    //     sentGrid.appendChild(newCell)
 
-                // Send to Firebase if new one is chosen
-                DBref.set({})
-                DBref.set(data)
-                spreadsheetContent.innerHTML = ''
-                DBref.on('value', (snapshot) => {
-                    snapshot.forEach(element => {
-                        var row = document.createElement('div')
-                        row.classList += 'ss-row'
+    //     newCell.appendChild(newCellP)
+
+    //     var typewriter = new Typewriter(newCellP, {
+    //         loop: true
+    //     });
+
+    //     var randomPause = Math.floor((Math.random() * 2000) + 500);
         
-                        element.forEach(cell => {
-                            var newCell = document.createElement('ss-cell')
-                            var newCellTitle = document.createElement('p')
-                            newCell.classList += 'cell'
-                            newCellTitle.innerText = cell.val()
-                            newCellTitle.classList += 'cell-title'
-                            newCell.appendChild(newCellTitle)
-                            row.appendChild(newCell)
-                        });
-        
-                        if (element.val()[1] < element.val()[2]) {
-                            var statusCell = document.createElement('div')
-                            statusCell.classList += 'cell'
-                            var status = document.createElement('div')
-                            status.classList += 'cell-status'
-                            status.style.backgroundColor = '#ff6b6b'
-                            statusCell.appendChild(status)
-                            row.appendChild(statusCell)
-                        } else {
-                            var statusCell = document.createElement('div')
-                            statusCell.classList += 'cell'
-                            var status = document.createElement('div')
-                            status.classList += 'cell-status'
-                            status.style.backgroundColor = '#1dd1a1'
-                            statusCell.appendChild(status)
-                            row.appendChild(statusCell)
-                        }
-        
-                        spreadsheetContent.appendChild(row)
-                    });
-                })
-            }
-        })
-    }
-
-    CSVupload.addEventListener('click', () => {
-        fileBtn.click();
-        fileBtn.addEventListener('change', handleFile, false);
-    });
+    //     typewriter.pauseFor(randomPause)
+    //         .typeString(cur)
+    //         .pauseFor(randomPause)
+    //         .deleteAll()
+    //         .pauseFor(randomPause)
+    //         .start();
+    // }
 });

@@ -17,6 +17,7 @@
 
 		<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+		<script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 		<script src="app.js"></script>
 
         <title>Cruze | Dashboard</title>
@@ -43,15 +44,21 @@
 					<p id="analytics-title">At a glance</p>
 				</div>
 				<div id="analytics-db">
-					<div class="adb-card" id="total-payments">
+					<div class="adb-card" id="total-inflow">
 						<p class="adb-card-icon"><i class="fas fa-receipt"></i></p>
 						<p class="adb-card-metric"><span style="font-size: 18px;color: #27282b;padding-right:5px;">$</span>2.12k</p>
-						<p class="adb-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Total Payments</p>
+						<p class="adb-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Cash Inflow</p>
+					</div>
+
+					<div class="adb-card" id="total-outflow">
+						<p class="adb-card-icon"><i class="fas fa-file-invoice-dollar"></i></p>
+						<p class="adb-card-metric"><span style="font-size: 18px;color: #27282b;padding-right:5px;">$</span>1.74k</p>
+						<p class="adb-card-desc"><i style="color: #ff6b6b;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Cash Outflow</p>
 					</div>
 
 					<div class="adb-card" id="sales">
 						<p class="adb-card-icon"><i class="fas fa-cash-register"></i></p>
-						<p class="adb-card-metric"><span style="font-size: 18px;color: #27282b;padding-right:5px;">$</span>3.56k</p>
+						<p class="adb-card-metric">3.56k</p>
 						<p class="adb-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Sales Volume</p>
 					</div>
 
@@ -117,7 +124,7 @@
 					<div class="trd-card">
 						<div class="trd-top" id="trd-5"></div>
 						<div class="trd-bottom">
-							<p class="trd-title">INSJON</p>
+							<p class="trd-title">INSIJON</p>
 							<p class="trd-desc">
 								674 pcs
 							</p>
@@ -149,35 +156,23 @@
 						<p class="sent-card-metric">471</p>
 						<p class="sent-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Tweets</p>
 					</div>
+
+					<div class="sent-card" id="tweets">
+						<p class="sent-card-icon"><i class="fab fa-twitter"></i></p>
+						<p class="sent-card-metric">471</p>
+						<p class="sent-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Placeholder</p>
+					</div>
+					
+					<div class="sent-card" id="tweets">
+						<p class="sent-card-icon"><i class="fab fa-twitter"></i></p>
+						<p class="sent-card-metric">471</p>
+						<p class="sent-card-desc"><i style="color: #1dd1a1;padding-right: 10px;font-size: 22px;" class="fas fa-caret-up"></i> Placeholder</p>
+					</div>
 				</div>
-				<div id="sent-header">
+				<div id="sent-header" style="margin-top: 40px;">
 					<p id="sent-title">Here's what people are saying. . .</p>
 				</div>
-			</div>
-
-			<div id="inventory">
-				<div id="inventory-header">
-					<p id="inv-title">From your Inventory</p>
-					<button id="inv-upload">Upload CSV</button>
-					<input type="file" style="display: none;" id="inv-file">
-				</div>
-				<div id="inv-db">
-					<div id="spreadsheet-top">
-						<div class="ss-header">
-							<p>Product Name</p>
-						</div>
-						<div class="ss-header">
-							<p>Current Stock</p>
-						</div>
-						<div class="ss-header">
-							<p>Threshold</p>
-						</div>
-						<div class="ss-header">
-							<p>Status</p>
-						</div>
-					</div>
-					<div id="spreadsheet-cells"></div>
-				</div>
+				<div id="sent-grid"></div>
 			</div>
 		</div>
 	</body>

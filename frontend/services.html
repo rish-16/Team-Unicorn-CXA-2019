@@ -13,7 +13,12 @@
 		<link rel="stylesheet" href="services.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<!-- <script src="app.js"></script> -->
+		<script src="PapaParse-5.0.0/papaparse.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="services.js"></script>
 
         <title>Cruze | Services</title>
     </head>
@@ -55,6 +60,31 @@
 						<p class="serv-card-icon"><i class="fas fa-globe-asia"></i></p>
 						<p class="serv-card-desc">Advertising</p>
 					</div>
+				</div>
+			</div>
+
+			<div id="inventory">
+				<div id="inventory-header">
+					<p id="inv-title">From your Inventory</p>
+					<button id="inv-upload">Upload CSV</button>
+					<input type="file" style="display: none;" id="inv-file">
+				</div>
+				<div id="inv-db">
+					<div id="spreadsheet-top">
+						<div class="ss-header">
+							<p>Product Name</p>
+						</div>
+						<div class="ss-header">
+							<p>Current Stock</p>
+						</div>
+						<div class="ss-header">
+							<p>Threshold</p>
+						</div>
+						<div class="ss-header">
+							<p>Status</p>
+						</div>
+					</div>
+					<div id="spreadsheet-cells"></div>
 				</div>
 			</div>
 		</div>

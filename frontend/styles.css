@@ -146,8 +146,12 @@ a {
     border-radius: 100%;
 }
 
-#total-payments i {
+#total-inflow i {
     color: #54a0ff;
+}
+
+#total-outflow i {
+    color: #5f27cd;
 }
 
 #sales i {
@@ -180,9 +184,9 @@ a {
 
 #sentiment {
     width: 95%;
-    height: 250px;
+    height: auto;
     margin: 50px auto 20px auto;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
 }
 
 #sentiment #sent-header {
@@ -263,17 +267,49 @@ a {
     color: #54a0ff;
 }
 
+#sent-grid {
+    width: 95%;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.grid-cell {
+    width: 25%;
+    height: 33.33%;
+    padding: 0;
+    margin: 0;
+    background-color: #e7ebf0;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.grid-cell .grid-cell-content {
+    font-size: 15px;
+    margin: 0 10px;
+    padding: 0;
+}
+
 /* ---------------------------------------------------------------------------------------------------------------- */
 
 #trending {
     width: 95%;
-    height: 300px;
+    height: 350px;
     margin: 50px auto 20px auto;
     padding-bottom: 20px;
     overflow: hidden;
 }
 
-#trending #inventory-header {
+#trending #trending-header {
     position: relative;
     width: 100%;
     height: 60px;
