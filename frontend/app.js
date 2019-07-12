@@ -117,5 +117,5 @@ document.addEventListener('DOMContentLoaded', function() {
     CSVupload.addEventListener('click', () => {
         fileBtn.click();
         fileBtn.addEventListener('change', handleFile, false);
-    })
+    });
 });

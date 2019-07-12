@@ -149,7 +149,7 @@ map.on('click', function(e){
 
     var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .setHTML(`<div style="background-color: white;border-radius:10px;text-align:center;overflow:hidden;"><p>${feature.properties.title}</p><br><p>${feature.properties.description}</p></div>`)
     .setLngLat(feature.geometry.coordinates)
     .addTo(map);
     console.log(feature.geometry.coordinates)
