@@ -1,4 +1,4 @@
-header1,header2, header3
-1, 2, 3
-4, 5, 6
-7, 8, 9
+product, stock, threshold
+Sprucewood 45x45, 300, 450
+Polystyrene 5x40, 500, 240
+Silk 20x20, 230, 123
