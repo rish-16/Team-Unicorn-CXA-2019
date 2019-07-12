@@ -49,7 +49,8 @@ function getData(data) {
             },
             "properties": {
                 "title": positions[k].name,
-                "icon": "marker"
+                "icon": "marker", 
+                "description": positions[k].description
             }
         }
         plotPoints.push(newPoint)
@@ -119,11 +120,13 @@ function addPoint() {
     if (markerOn) {
         var pos = marker.getLngLat();
         var name = document.getElementById('name').value;
+        var des = document.getElementById('description').value; 
         console.log(pos, name) 
         var point = {
             x : pos.lng, 
             y : pos.lat, 
-            name : name
+            name : name, 
+            description: des
         };
         ref.push(point); //push a new point on to the positions database
         markerOn = false;
@@ -132,12 +135,24 @@ function addPoint() {
     }
 }
 
-/*
-#to displace the details of the place when click on the marker (not done yet)
+
+//to displace the details of the place when click on the marker (not done yet)
 map.on('click', function(e){
     var features = map.queryRenderedFeatures(e.point, {
-        layers: ['features-parks'] // replace this with the name of the layer
+        layers: ['points'] // replace this with the name of the layer
         });
+    if (!features.length) {
+        return;
+    }
+
+    var feature = features[0];
+
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+    console.log(feature.geometry.coordinates)
+
 });
-*/
 
