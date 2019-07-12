@@ -10,7 +10,7 @@
 
 		<script src="https://kit.fontawesome.com/4467197cc4.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap&subset=latin-ext" rel="stylesheet">
-		<link rel="stylesheet" href="services.css">
+		<link rel="stylesheet" href="finance.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="PapaParse-5.0.0/papaparse.js"></script>
@@ -41,52 +41,41 @@
 		<div id="dashboard">
 			<div id="services">
 				<div id="services-db">
-					<div class="serv-card" id="transport" onclick="window.location='transportation.html'">
-                        <p class="serv-card-icon"><i class="fas fa-piggy-bank"></i></p>
-						<p class="serv-card-desc" >Transportation</p>
+					<div class="serv-card" id="transport">
+						<p class="serv-card-icon"><i class="fas fa-money-check-alt"></i></p>
+						<p class="serv-card-desc-bank" >UOB Biz Money</p>
+						<p class="serv-card-desc"><span>Interest rate:</span> 6.48% p.a.</p>
+						<p class="serv-card-desc"><span>Borrowing:</span> 150000RM over 3 years</p>
+						<p class="serv-card-desc"><span>Monthly Repayment:</span> 4976.67RM</p>
 					</div>
 
-					<div class="serv-card" id="finance" onclick="window.location='finance.html'">
-                        <p class="serv-card-icon"><i class="fas fa-dolly"></i></p>
-						<p class="serv-card-desc" >Finance and Banking</p>
+					<div class="serv-card" id="finance">
+						<p class="serv-card-icon"><i class="fas fa-money-check-alt"></i></p>
+						<p class="serv-card-desc-bank" >IVC Biz Loan</p>
+						<p class="serv-card-desc"><span>Interest rate:</span> 9% p.a.</p>
+						<p class="serv-card-desc"><span>Borrowing:</span> 150000RM over 3 years</p>
+						<p class="serv-card-desc"><span>Monthly Repayment:</span> 5291.67RM</p>
 					</div>
 
 					<div class="serv-card" id="packaging">
-						<p class="serv-card-icon"><i class="fas fa-box-open"></i></p>
-						<p class="serv-card-desc">Packaging</p>
+						<p class="serv-card-icon"><i class="fas fa-money-check-alt"></i></p>
+						<p class="serv-card-desc-bank" >BSN Microplus</p>
+						<p class="serv-card-desc"><span>Interest rate:</span> 9.95% p.a.</p>
+						<p class="serv-card-desc"><span>Borrowing:</span> 150000RM over 3 years</p>
+						<p class="serv-card-desc"><span>Monthly Repayment:</span> 5410.67RM</p>
 					</div>
 
 					<div class="serv-card" id="advertising">
-						<p class="serv-card-icon"><i class="fas fa-globe-asia"></i></p>
-						<p class="serv-card-desc">Advertising</p>
+						<p class="serv-card-icon"><i class="fas fa-money-check-alt"></i></p>
+						<p class="serv-card-desc-bank" >MIDF Soft Loan</p>
+						<p class="serv-card-desc"><span>Interest rate:</span> 4% p.a.</p>
+						<p class="serv-card-desc"><span>Borrowing:</span> 150000RM over 3 years</p>
+						<p class="serv-card-desc"><span>Monthly Repayment:</span> 4667.97RM</p>
 					</div>
 				</div>
 			</div>
 
-			<div id="inventory">
-				<div id="inventory-header">
-					<p id="inv-title">From your Inventory</p>
-					<button id="inv-upload">Upload CSV</button>
-					<input type="file" style="display: none;" id="inv-file">
-				</div>
-				<div id="inv-db">
-					<div id="spreadsheet-top">
-						<div class="ss-header">
-							<p>Product Name</p>
-						</div>
-						<div class="ss-header">
-							<p>Current Stock</p>
-						</div>
-						<div class="ss-header">
-							<p>Threshold</p>
-						</div>
-						<div class="ss-header">
-							<p>Status</p>
-						</div>
-					</div>
-					<div id="spreadsheet-cells"></div>
-				</div>
-			</div>
+			
 		</div>
 	</body>
 </html>

@@ -25,7 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
     elecRef.on('value', snapshot => {
         snapshot.forEach(element => {
             cur = element.val()
-            electricPoints.push([parseFloat(cur[3]), parseFloat(cur[4])])
+            console.log(cur)
+            electricPoints.push([cur.name, cur.info, cur.tel])
+            //console.log(electricPoints)
+            var newPoint = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [cur.lon, cur.lat]
+                },
+                "properties": {
+                    "title": cur.name,
+                    "icon": "marker", 
+                    "description": cur.info
+                }
+            }
+            plotPoints.push(newPoint)
         });
     })
 
@@ -51,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         electricPoints.map(function(algo){
             query.toString().split(" ").map(function(word){
                 if (algo.toString().toLowerCase().indexOf(word[1].toLowerCase()) != -1){
+                    console.log('yes')
                     var newCell = document.createElement('div')
                     newCell.classList  = 'res-cell'
                     var newCellP = document.createElement('p')
@@ -87,28 +103,36 @@ document.addEventListener('DOMContentLoaded', () => {
             updateResult(e.target.value);
         });
 
-        // map.addLayer({
-        //     "id": "points",
-        //     "type": "FEature",
-        //     "source": {
-        //         "type": "geojson",
-        //         "data": {
-        //             "type": "FeatureCollection",
-        //             "features": electricPoints
-        //         }
-        //     },
-        //     properties: {
-        //         'marker-color': '#3bb2d0',
-        //         'marker-size': 'large',
-        //         'marker-symbol': 'rocket'
-        //     }
-        // });
-
+        map.addLayer({
+            "id": "points",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "FeatureCollection",
+                    "features": plotPoints
+                }
+            },
+            "layout": {
+                "icon-image": "{icon}-15",
+                "text-field": "{title}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-offset": [0, 0.6],
+                "text-anchor": "top"
+            },
+            properties: {
+                'marker-color': '#3bb2d0',
+                'marker-size': 'large',
+                'marker-symbol': 'rocket'
+            }
+        });
+        /*
         for (var i = 0; i < electricPoints.length; i++) {
             var cur_loc = electricPoints[i]
             var mkr = new mapboxgl.Marker().setLngLat([cur_loc["geometry"]["coordinates"]])
             .addTo(map);
         }
+        */
     });
 
     map.on('click', function(e){
@@ -123,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
-        .setHTML(`<div style="background-color: white;border-radius:10px;text-align:center;overflow:hidden;"><p>${feature.properties.title}</p><br><p>${feature.properties.description}</p></div>`)
+        .setHTML(`<div style="background-color: white;border-radius:10px;text-align:center;overflow:hidden;"><p style="color:black;">${feature.properties.title}</p><br><p style="color:black">${feature.properties.description}</p></div>`)
         .setLngLat(feature.geometry.coordinates)
         .addTo(map);
         console.log(feature.geometry.coordinates)
