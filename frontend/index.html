@@ -14,7 +14,9 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="PapaParse-5.0.0/papaparse.js"></script>
+
 		<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 		<script src="app.js"></script>
 
         <title>Dashboard | CXA 2019</title>
@@ -29,7 +31,7 @@
 				<p id="resource-map-page" onclick="window.location='resources.html'">Resources</p>
 			</div>
 			<div id="user">
-				<p><i class="fas fa-user"></i>John Doe</p>
+				<p><i class="fas fa-store-alt"></i>IKEA MSIA</p>
 			</div>
 		</div>
 
@@ -67,6 +69,31 @@
 				</div>
 			</div>
 
+			<div id="trending">
+				<div id="trending-header">
+					<p id="trd-title">Trending sales</p>
+				</div>
+				<div id="trd-catalogue">
+					<div class="trd-card">
+						<div class="trd-top">
+							<img alt="img" class="trd-top-img">
+						</div>
+						<div class="trd-bottom">
+							<p class="trd-title"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="sentiment">
+				<div id="sent-header">
+					<p id="sent-title">Reach and Impressions</p>
+				</div>
+				<div id="sent-container">
+					
+				</div>
+			</div>
+
 			<div id="inventory">
 				<div id="inventory-header">
 					<p id="inv-title">From your Inventory</p>
@@ -88,159 +115,9 @@
 							<p>Status</p>
 						</div>
 					</div>
-					<div id="spreadsheet-cells">
-						<!-- <div class="ss-row">
-							<div class="cell">
-								<p class="cell-title">Coke</p>
-							</div>
-							<div class="cell">
-								<p class="cell-title">300</p>
-							</div>
-							<div class="cell">
-								<p class="cell-title">250</p>
-							</div>
-						</div>
-
-						<div class="ss-row">
-							<div class="cell">
-								<p class="cell-title">Coke</p>
-							</div>
-							<div class="cell">
-								<p class="cell-title">300</p>
-							</div>
-							<div class="cell">
-								<p class="cell-title">250</p>
-							</div>
-						</div>
-
-						<div class="ss-row">
-							<div class="cell">
-								<p class="cell-title">Coke</p>
-							</div>
-							<div class="cell">
-								<p class="cell-title">300</p>
-							</div>
-							<div class="cell">
-								<p class="cell-title">250</p>
-							</div> -->
-						</div>
-					</div>
+					<div id="spreadsheet-cells"></div>
 				</div>
 			</div>
 		</div>
 	</body>
-	
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			var firebaseConfig = {
-				apiKey: "AIzaSyBY8H2AtuzMXVX7IevYyn0Wr8PdiYaIrGU",
-				authDomain: "test-a1287.firebaseapp.com",
-				databaseURL: "https://test-a1287.firebaseio.com",
-				projectId: "test-a1287",
-				storageBucket: "test-a1287.appspot.com",
-				messagingSenderId: "494992214705",
-				appId: "1:494992214705:web:38a77d4c9514b154"
-			};
-			firebase.initializeApp(firebaseConfig);
-
-			const CSVupload = document.getElementById('inv-upload');
-			const fileBtn = document.getElementById('inv-file');
-
-			const spreadsheetContent = document.getElementById('spreadsheet-cells')
-
-			function uploadInv() {
-				var db = firebase.database.ref()
-				db.child('Inventory').on('value', (snapshot) => {
-					snapshot.forEach(element => {
-						var row = document.createElement('div')
-						row.classList += 'ss-row'
-
-						element.forEach(cell => {
-							var newCell = document.createElement('ss-cell')
-							var newCellTitle = document.createElement('p')
-							newCell.classList += 'cell'
-							newCellTitle.innerText = cell.val()
-							newCellTitle.classList += 'cell-title'
-							newCell.appendChild(newCellTitle)
-							row.appendChild(newCell)
-						});
-
-						if (element[1] < element[2]) {
-							var statusCell = document.createElement('div')
-							statusCell.classList += 'cell'
-							var status = document.createElement('div')
-							status.classList += 'cell-status'
-							status.style.backgroundColor = '#ff6b6b'
-							statusCell.appendChild(status)
-							row.appendChild(statusCell)
-						} else {
-							var statusCell = document.createElement('div')
-							statusCell.classList += 'cell'
-							var status = document.createElement('div')
-							status.classList += 'cell-status'
-							status.style.backgroundColor = '#1dd1a1'
-							statusCell.appendChild(status)
-							row.appendChild(statusCell)
-						}
-
-						spreadsheetContent.appendChild(row)
-					});
-				})
-			}
-
-			uploadInv()
-
-			function handleFile() {
-				const fileList = this.files;
-				Papa.parse(fileList[0], {
-					complete: function(res) {
-						var data = res.data
-						data = data.splice(1)
-
-						// Send to Firebase if new one is chosen
-
-						data.forEach(element => {
-							var row = document.createElement('div')
-							row.classList += 'ss-row'
-
-							element.forEach(cell => {
-								var newCell = document.createElement('ss-cell')
-								var newCellTitle = document.createElement('p')
-								newCell.classList += 'cell'
-								newCellTitle.innerText = cell
-								newCellTitle.classList += 'cell-title'
-								newCell.appendChild(newCellTitle)
-								row.appendChild(newCell)
-							});
-
-							if (element[1] < element[2]) {
-								var statusCell = document.createElement('div')
-								statusCell.classList += 'cell'
-								var status = document.createElement('div')
-								status.classList += 'cell-status'
-								status.style.backgroundColor = '#ff6b6b'
-								statusCell.appendChild(status)
-								row.appendChild(statusCell)
-							} else {
-								var statusCell = document.createElement('div')
-								statusCell.classList += 'cell'
-								var status = document.createElement('div')
-								status.classList += 'cell-status'
-								status.style.backgroundColor = '#1dd1a1'
-								statusCell.appendChild(status)
-								row.appendChild(statusCell)
-							}
-
-							spreadsheetContent.appendChild(row)
-						});
-					}
-				})
-			}
-
-			CSVupload.addEventListener('click', () => {
-				fileBtn.click();
-				fileBtn.addEventListener('change', handleFile, false);
-			})
-		})
-	</script>
 </html>
