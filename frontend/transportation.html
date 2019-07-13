@@ -13,6 +13,9 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet'>
         <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
         <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+
+        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script> 
+        <script src="transportation.js" type="text/javascript"></script>
         
         <title>Cruze | Resources</title>
     </head>
@@ -31,25 +34,30 @@
 
 
         <div id="dashboard">
-            <div id="services">
-                <div class="transMode">
-                        <div class="button" id="button1">Air</div>
-                        <div class="button" id="button2">Land</div>
-                        <div class="button" id="button3">Ship</div>
+            <div id="container">
+                <div id="selector">
+                    <div id="air">
+                        <p>Air</p>
+                    </div>
+                    <div id="air">
+                        <p>Land</p>
+                    </div>
+                    <div id="air">
+                        <p>Ship</p>
+                    </div>
                 </div>
-                <div id="services-db">
-                    <p class="searchItem">Location: <input type="textbox" class="searchbar" id="departure"></p>
-                    <p class="searchItem">Destination: <input type="textbox" class="searchbar" id="destination"></p>
-                    <p class="searchItem">Weight: <input type="number" class="searchbar" id="weight"> </p>
-                    <div id="submitButton"></div>
+
+                <div id="main">
+                    <div id="my-loc">
+                        <p>My Location</p>
+                        <button id="locate-loc">Locate Me!</button>
+                    </div>
+
+                    <div id="dest-info">
+                        
+                    </div>
                 </div>
             </div>
         </div>
-
-
-        
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script> 
-        <script src="transportation.js" type="text/javascript"></script>
     </body>
 </html>

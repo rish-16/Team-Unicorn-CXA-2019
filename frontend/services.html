@@ -43,15 +43,18 @@
 		<!-- <div id="infobar"></div> -->
 
 		<div id="dashboard">
-			<div id="services">
+			<div id="inventory-header">
+				<p id="inv-title">Available Services</p>
+			</div>
+			<div id="serv-container">
 				<div id="services-db">
 					<div class="serv-card" id="transport" onclick="window.location='transportation.html'">
-                        <p class="serv-card-icon"><i class="fas fa-dolly"></i></p>
+						<p class="serv-card-icon"><i class="fas fa-dolly"></i></p>
 						<p class="serv-card-desc" >Transportation</p>
 					</div>
 
 					<div class="serv-card" id="finance" onclick="window.location='finance.html'">
-                        <p class="serv-card-icon"><i class="fas fa-piggy-bank"></i></p>
+						<p class="serv-card-icon"><i class="fas fa-piggy-bank"></i></p>
 						<p class="serv-card-desc" >Finance and Banking</p>
 					</div>
 
@@ -63,6 +66,50 @@
 					<div class="serv-card" id="advertising">
 						<p class="serv-card-icon"><i class="fas fa-globe-asia"></i></p>
 						<p class="serv-card-desc">Advertising</p>
+					</div>
+				</div>
+				<div id="serv-sandbox">
+					<div id="container">
+						<div id="selector">
+							<div id="air">
+								<p>Air</p>
+							</div>
+							<div id="land">
+								<p>Land</p>
+							</div>
+							<div id="ship">
+								<p>Ship</p>
+							</div>
+						</div>
+		
+						<div id="main">
+							<div id="my-loc">
+								<p>My Location</p>
+								<button id="locate-loc">Locate Me!</button>
+							</div>
+		
+							<div id="dest-info">
+								<p>Enter Destination</p>
+								<input type="text" placeholder="Enter destination..." id="dest-name">
+							</div>
+
+							<div id="weights">
+								<p>Freight Weight / kg</p>
+								<select id="weight-select">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+								</select>
+							</div>
+						</div>
+						<p id="cur-loc"></p>
+							<button id="estimate">Estimate <i class="fas fa-dollar-sign"></i></button>
+							<p id="final-est"></p>
 					</div>
 				</div>
 			</div>

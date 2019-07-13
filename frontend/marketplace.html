@@ -23,13 +23,9 @@
     <body>
 		<div id="header">
 			<p id="logo">Cr<span>uze</span></p>
-			<div id="nav">
-                <p id="dashboard" onclick="window.location='index.html'">Dashboard</p>
-                <p style="color: #2f3542;font-weight: bold;" id="marketplace" onclick="window.location='marketplace.html'">Marketplace</p>
-				<p id="resource-map" onclick="window.location='resources.html'">Resources</p>
-			</div>
+			<!-- <div id="nav"></div> -->
 			<div id="user">
-				<p><i class="fas fa-user"></i>John Doe</p>
+                <p><i class="fas fa-shopping-cart"></i> The Marketplace</p>
 			</div>
         </div>
 
@@ -37,54 +33,43 @@
             <div id="search-tools">
                 <input type="text" id="searchbar" placeholder="Search Marketplace">
             </div>
-            <div id="sandbox">
-                <!-- <div class="product-card">
-                    <div class="product-top"></div>
-                    <div class="product-bottom">
-                        <p class="product-title">Purified Metal</p>
-                        <p class="product-desc">Selling galvanised aluminium coated with Zinc. Durable and flexible material.</p>
-                        <div class="product-prices">
-                            <p class="product-cost">$45<span>/kg</span></p>
-                        </div>
-                    </div>
-                </div> -->
-                <div id="gateway">
-                    <div id="gw-header">
-                        <img src="Assets/logo.jpg" alt="img">
-                    </div>
+            <div id="sandbox"></div>
+        </div>
+        <div id="gateway">
+            <div id="gw-header">
+                <img src="Assets/logo.jpg" alt="img">
+            </div>
 
-                    <div style="z-index: 1000;" id="divider"></div>
-                    
-                    <div id="info">
-                        <p id="gw-title">Product Title</p>
-                        <p id="gw-price">Price</p>
+            <div style="z-index: 1000;" id="divider"></div>
+            
+            <div id="info">
+                <p id="gw-title">Product Title</p>
+                <p id="gw-price">Price</p>
+            </div>
+            <div style="z-index: 1000;" id="divider"></div>
+            <div id="payment-area">
+                <div id="left">
+                    <p>Pay with</p>
+                    <div class="mode">
+                        <p><i class="fas fa-credit-card"></i> Card</p>
                     </div>
-                    <div style="z-index: 1000;" id="divider"></div>
-                    <div id="payment-area">
-                        <div id="left">
-                            <p>Pay with</p>
-                            <div class="mode">
-                                <p><i class="fas fa-credit-card"></i> Card</p>
-                            </div>
-                            <div class="mode">
-                                <p><i class="fas fa-university"></i> Bank Transfer</p>
-                            </div>
+                    <div class="mode">
+                        <p><i class="fas fa-university"></i> Bank Transfer</p>
+                    </div>
+                </div>
+                <div id="right">
+                    <p>Card number<br><input type="text" id="card-num"></p>
+                    <div id="details">
+                        <div id="right">
+                            <p>Expiration<br><input placeholder="MM / YY" type="text" id="exp"></p>
                         </div>
                         <div id="right">
-                            <p>Card number<br><input type="text" id="card-num"></p>
-                            <div id="details">
-                                <div id="right">
-                                    <p>Expiration<br><input placeholder="MM / YY" type="text" id="exp"></p>
-                                </div>
-                                <div id="right">
-                                    <p>Security code<br><input type="text" id="cvv"></p>
-                                </div>
-                            </div>
+                            <p>Security code<br><input type="text" id="cvv"></p>
                         </div>
                     </div>
-                    <p id="promo">Powered by <span><img src="Assets/stripe.png" alt="Stripe"></span> </p>
                 </div>
             </div>
+            <p id="promo">Powered by <span><img src="Assets/stripe.png" alt="Stripe"></span> </p>
         </div>
     </body>
 </html>

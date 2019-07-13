@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(card)
 
         card.onclick = () => {
+            console.log('hello')
             this.checkout(this.name, this.price)
         }
     }   
@@ -66,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     for (var i=0; i < products.length; i++) {
         var cur = products[i]
         var prdt = new Product(cur[0], cur[1], cur[2])
-        // prdt.render(market)
+        prdt.render(market)
     }
+
+    // var DBref = firebase.database().ref()
 })

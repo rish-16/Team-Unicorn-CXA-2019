@@ -18,6 +18,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const understocked = []
 
+    const estimate = document.getElementById('estimate')
+    const air = document.getElementById('air')
+    const land = document.getElementById('land')
+    const ship = document.getElementById('ship')
+    const weightSelect = document.getElementById('weight-select')
+    const locate = document.getElementById('locate-loc')
+    const curLoc = document.getElementById('cur-loc')
+    const finalEst = document.getElementById('final-est')
+
+    var modeOfT = null
+    var weight = null
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            curLoc.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    
+    function showPosition(position) {
+        curLoc.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude; 
+    }
+
+    locate.onclick = () => {
+        getLocation()
+    }
+
+    weightSelect.onchange = (e) => {
+        var el = e.target
+        weight = el.selectedIndex.toInt()
+    }
+
+    air.onclick = () => {
+        modeOfT = 'air'
+    }
+    land.onclick = () => {
+        modeOfT = 'land'
+    }
+    ship.onclick = () => {
+        modeOfT = 'ship'
+    }
+
+
     function uploadInv() {
         spreadsheetContent.innerHTML = ''
         DBref.child('Inventory').on('value', (snapshot) => {
@@ -132,9 +176,20 @@ document.addEventListener('DOMContentLoaded', function() {
         fileBtn.addEventListener('change', handleFile, false);
     });
 
+    estimate.onclick = () => {
+        console.log('iucben')
+        if (modeOfT == 'air') {
+            var randomcost = (Math.random()*1000).toFixed(2)
+            finalEst.innerHTML = randomcost
+        } else if (modeOfT == 'land') {
+            var randomcost = (Math.random()*100).toFixed(2)
+            finalEst.innerHTML = randomcost
+        } else if (modeOfT == 'ship') {
+            var randomcost = (Math.random()*500).toFixed(2)
+            finalEst.innerHTML = randomcost
+        }
+    }
 
-let log = document.getElementById('noti');
 
-
-
+    let log = document.getElementById('noti');
 });
