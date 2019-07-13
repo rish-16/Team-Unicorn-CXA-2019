@@ -11,9 +11,9 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 console.log(firebase)
 
-var airButton = document.getElementById("airButton") 
-var landButton = document.getElementById("landButton") 
-var shipButton = document.getElementById("landButton") 
+var airButton = document.getElementById("button1") 
+var landButton = document.getElementById("button2") 
+var shipButton = document.getElementById("button3") 
 var submitButton = document.getElementById("submitButton") 
 
 /*
