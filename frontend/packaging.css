@@ -94,15 +94,16 @@ a {
     z-index: -2000;
     overflow: scroll;
     padding-bottom: 20px;
+
 }
 
-#analytics {
+#services {
     width: 95%;
     height: auto;
     margin: 20px auto;
 }
 
-#analytics #analytics-header {
+#services #services-header {
     position: relative;
     width: 100%;
     height: 40px;
@@ -111,12 +112,12 @@ a {
     justify-content: center;
 }
 
-#analytics #analytics-header #analytics-title {
+#services #services-header #services-title {
     font-size: 22px;
     margin: auto 3%;
 }
 
-#analytics #analytics-db {
+#services #services-db {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -125,9 +126,85 @@ a {
     zoom: 0.8;
 }
 
-.adb-card {
-    width: 250px;
-    height: 225px;
+#priority {
+    display:flex;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+
+a.button1{
+
+    display: inline-block;
+    padding: 0.45em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: 0;
+    /*border-radius: 0.12em;*/
+    background-color: white;
+    border-right-color:#DCDCDC;
+    box-sizing:border-box;
+    text-decoration: none;
+    font-family:'Roboto', sans-serif;
+    font-weight: 300;
+    color:#000000;
+    text-align:center;
+    transition:all 0.2s;
+    width:7%;
+}
+a.button1:hover{
+    color:white;
+    background-color:#5f27cd;
+    background-border:#5f27cd;
+}
+@media all and (max-width:30em){
+ a.button1{
+    display: block;
+    margin: 0.4em auto;
+ }
+}
+
+
+a.button2{
+
+    display: inline-block;
+    padding: 0.45em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: 0;
+    /*border-radius: 0.12em;*/
+    background-color: white;
+    border-left-color:#DCDCDC;
+    box-sizing:border-box;
+    text-decoration: none;
+    font-family:'Roboto', sans-serif;
+    font-weight: 300;
+    color:#000000;
+    text-align:center;
+    transition:all 0.2s;
+    width:7%;
+}
+a.button2:hover{
+    color:white;
+    background-color:#5f27cd;
+    background-border:#5f27cd;
+}
+
+
+@media all and (max-width:30em){
+ a.button2{
+    display: block;
+    margin: 0.4em auto;
+ }
+}
+
+#active{
+    color:white;
+    background-color:#5f27cd;
+    background-border:#5f27cd;
+}
+
+.serv-card {
+    width: 60%;
+    height: auto;
     background-color: white;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);   
@@ -137,291 +214,89 @@ a {
     justify-content: center;
     transition: 0.5s;
     margin: 10px;
+    margin-bottom: 40px;
+    cursor: pointer;
 }
 
-.adb-card .adb-card-icon {
-    font-size: 35px;
+
+.serv-card .serv-card-icon {
+    font-size: 42px;
     margin: 10px 0 10px 0;
     padding: 0;
     border-radius: 100%;
 }
 
-#total-inflow i {
+#transport i {
     color: #54a0ff;
 }
 
-#total-outflow i {
-    color: #5f27cd;
-}
-
-#sales i {
+#finance i {
     color: #1dd1a1;
 }
 
-#mrr i {
+#packaging i {
     color: #feca57;
 }
 
-#inv i {
+#advertising i {
     color: #ff6b6b;
 }
 
-.adb-card .adb-card-metric {
-    font-size: 45px;
+.serv-card .serv-card-desc-bank {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: black;
     font-weight: 700;
-    padding: 0 0 10px 0;
-    margin: 0;
-}
-
-.adb-card .adb-card-desc {
-    padding: 0;
-    margin: 0;
-    font-size: 19px;
-    color: #27282b;
-}
-
-/* ---------------------------------------------------------------------------------------------------------------- */
-
-#sentiment {
-    width: 95%;
-    height: auto;
-    margin: 50px auto 20px auto;
-    /* padding-bottom: 20px; */
-}
-
-#sentiment #sent-header {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-#sentiment #sent-header #sent-title {
-    font-size: 22px;
-    margin: auto 3%;
-}
-
-#sentiment #sent-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    zoom: 0.8;
-}
-
-.sent-card {
-    width: 250px;
-    height: 200px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);   
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: 0.5s;
-    margin: 10px;
-}
-
-.sent-card .sent-card-icon {
-    font-size: 30px;
-    margin: 10px 0 10px 0;
-    padding: 0;
-    border-radius: 100%;
-}
-
-.sent-card .sent-card-metric {
-    font-size: 45px;
-    font-weight: 700;
-    padding: 0 0 10px 0;
-    margin: 0;
-}
-
-.sent-card .sent-card-desc {
-    padding: 0;
-    margin: 0;
-    font-size: 19px;
-    color: #27282b;
-}
-
-.sent-card .sent-card-legend {
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
-    color: #747d8c;
     padding-top: 10px;
-}
-
-#ovrallsent i {
-    color: #feca57;
-}
-
-#reviewstdy i {
-    color: #1dd1a1;
-}
-
-#tweets i {
-    color: #54a0ff;
-}
-
-#customer i {
-    color: #5f27cd;
-}
-
-#repeating i {
-    color:#ff6b6b;
-}
-
-#sent-grid {
-    width: 95%;
-    height: 300px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-.grid-cell {
-    width: 25%;
-    height: 33.33%;
-    padding: 0;
-    margin: 0;
-    background-color: #e7ebf0;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
+    text-transform: capitalize;
     justify-content: center;
-    text-align: center;
+
 }
 
-.grid-cell .grid-cell-content {
-    font-size: 15px;
-    margin: 0 10px;
-    padding: 0;
-}
-
-/* ---------------------------------------------------------------------------------------------------------------- */
-
-#trending {
-    width: 95%;
-    height: 350px;
-    margin: 50px auto 20px auto;
+.serv-card .serv-card-desc {
+    padding: 10px 50px;
     padding-bottom: 20px;
-    overflow: hidden;
-}
-
-#trending #trending-header {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-#trending #trending-header #trd-title {
+    margin: 0;
     font-size: 22px;
-    margin: auto 3%;
+    color: #576574;
+    justify-content: center;
+    /*font-weight: bold;*/
+    text-align:left;
+    overflow:hidden;
 }
 
-#trd-catalogue {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow-x: scroll;
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.trd-card {
-    width: 200px;
-    height: 250px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);   
-    margin: auto 20px;
-    overflow: hidden;
-    flex: 0 0 auto;
-    scrollbar-width: none;
-}
-
-.trd-card .trd-top {
-    width: 100%;
-    height: 80%;
-}
-
-#trd-1 {
-    width: 100%;
-    height: 80%;
-    background-image: url('Assets/hanford.jpg');
-    background-position: center;
-    background-size: cover;
-}
-
-#trd-2 {
-    width: 100%;
-    height: 80%;
-    background-image: url('Assets/sofa2.jpeg');
-    background-position: center;
-    background-size: cover;
-}
-
-#trd-3 {
-    width: 100%;
-    height: 80%;
-    background-image: url('Assets/sofa1.jpg');
-    background-position: center;
-    background-size: cover;
-}
-
-#trd-4 {
-    width: 100%;
-    height: 80%;
-    background-image: url('Assets/table3.jpeg');
-    background-position: center;
-    background-size: cover;
-}
-
-#trd-5 {
-    width: 100%;
-    height: 80%;
-    background-image: url('Assets/table.jpg');
-    background-position: center;
-    background-size: cover;
-}
-
-.trd-card .trd-bottom {
-    width: 100%;
-    height: 20%;
-    background-color: #dbdee2;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.trd-card .trd-bottom p {
-    margin: auto 10px;
-}
-
-.trd-card .trd-bottom .trd-title {
-    font-size: 16px;
+.serv-card .serv-card-desc span {
     font-weight: bold;
 }
 
-.trd-card .trd-bottom .trd-desc {
-    font-size: 14px;
-    color: #576574;
+a.callbutton{
+
+    display: flex;
+    justify-content: center;
+    padding: 0.45em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: 0;
+    /*border-radius: 0.12em;*/
+    background-color: white;
+    border-left-color:#DCDCDC;
+    box-sizing:border-box;
+    text-decoration: none;
+    font-family:'Roboto', sans-serif;
+    font-weight: 300;
+    color:#000000;
+    text-align:center;
+    transition:all 0.2s;
+    width:7%;
 }
+
+
 
 /* ---------------------------------------------------------------------------------------------------------------- */
 
-#inventory {
+#dashboard #inventory {
     width: 95%;
     height: auto;
     margin: 50px auto 20px auto;
