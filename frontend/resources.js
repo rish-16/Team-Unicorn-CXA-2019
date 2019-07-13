@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         var catPlotPoints = []; //category wise list of geojson object for map plotting
         var catPointList = []; //category wise list containing all data from database 
         var catRef = firebase.database().ref(catList[i]).child('Company'); 
-        //console.log(catList[i]); 
         catRef.on('value', snapshot => {
             catPlotPoints.length = 0; 
             catPointList.length = 0; 
@@ -46,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             plotPoints.push(catPlotPoints.slice())
             pointsList.push(catPointList.slice()) 
-            //console.log(pointsList) 
         });
     };
 
@@ -73,52 +71,42 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateResult(query) {
         searchRes.innerHTML = ''; 
         pointsListMatch.length = 0; 
+        catListMatch = catList.slice();  
         if(query.length == 0) {catListMatch = catList.slice();};
-        catListMatch.map(function(catName){
+        catListMatch.map(function(catName){ 
             query.toString().split(" ").map(function(word){
-                console.log(catListMatch)
-                //console.log(catName.toString().toLowerCase().indexOf(word[word.length-1].toLowerCase()))
-                /*
-                if(catListMatch.length == 0) {
-                    catListMatch = catList.slice();
+                if(word.length > 0 && word[word.length-1] != ' ' && catName.toString().toLowerCase().search(word) == -1) {
+                    catListMatch[catListMatch.indexOf(catName)] = ''; 
                 };
-                */
-                if(word.length == 0 && catListMatch.length == 0) {
-                    catListMatch = catList.slice(); 
-                    return; 
-                } 
-                else if(word.length > 0 && word[word.length-1] != ' ' && catName.toString().toLowerCase().indexOf(word[word.length-1].toLowerCase()) == -1) {
-                    //console.log('index') 
-                    //console.log(catListMatch.indexOf(catName))
-                    console.log(catName.toString().toLowerCase())
-                    catListMatch.splice(catListMatch.indexOf(catName), 1); 
-                    //console.log(catListMatch)
-                    //console.log(catName)
-                };
-                catListMatch.map(function(catNameMatch) {
-                    pointsList[catList.indexOf(catNameMatch)].map(function (algo){
-                        pointsListMatch.push(algo)
-                        var newCell = document.createElement('div')
-                        newCell.classList  = 'res-cell'
-                        var newCellP = document.createElement('p')
-                        newCellP.classList = 'res-cell-text'
-                        var newCellD = document.createElement('p')
-                        newCellD.classList = 'res-cell-desc'
-                        var newCellN = document.createElement('p')
-                        newCellN.classList = 'res-cell-num'
-                        
-                        var cur = Object(algo);
-                        newCellP.innerHTML = cur[0]
-                        newCellD.innerHTML = cur[1]
-                        newCellN.innerHTML = '<a href="tel:' + cur[2] + '">'  + cur[2] + '</a>'
-                        
-                        newCell.appendChild(newCellP)
-                        newCell.appendChild(newCellD)
-                        newCell.appendChild(newCellN)
-                        searchRes.appendChild(newCell)
-                        //console.log(newCell)
-                    });
-                });
+            }); 
+        });
+        var i = 0;
+        while(true) {
+            if (i == catListMatch.length) break;
+            if (catListMatch[i] == '') catListMatch.splice(i, 1); 
+            else i++; 
+        }
+        catListMatch.map(function(catNameMatch) {
+            pointsList[catList.indexOf(catNameMatch)].map(function (algo){
+                pointsListMatch.push(algo)
+                var newCell = document.createElement('div')
+                newCell.classList  = 'res-cell'
+                var newCellP = document.createElement('p')
+                newCellP.classList = 'res-cell-text'
+                var newCellD = document.createElement('p')
+                newCellD.classList = 'res-cell-desc'
+                var newCellN = document.createElement('p')
+                newCellN.classList = 'res-cell-num'
+                
+                var cur = Object(algo);
+                newCellP.innerHTML = cur[0]
+                newCellD.innerHTML = cur[1]
+                newCellN.innerHTML = '<a href="tel:' + cur[2] + '">'  + cur[2] + '</a>'
+                
+                newCell.appendChild(newCellP)
+                newCell.appendChild(newCellD)
+                newCell.appendChild(newCellN)
+                searchRes.appendChild(newCell)
             });
         });
     };
@@ -132,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         addTraffic()
 
         searchBar.addEventListener('input', function(e) {
-            //console.log(e.target.value)
             updateResult(e.target.value);
         });
         
@@ -144,19 +131,15 @@ document.addEventListener('DOMContentLoaded', () => {
     var searchButton = document.getElementById('search-button')
     searchButton.addEventListener("click", function refreshMap() {
         var catListMatchMap = catListMatch.slice();
-        var pointsListMatchMap = pointsListMatch.slice();  
-        //console.log(catListMatchMap.length); 
-        //console.log(pointsListMatchMap.length); 
+        var pointsListMatchMap = pointsListMatch.slice(); 
 
         var plotPointsMatchMap = [];
-        //console.log(plotPoints)
         for(var i = 0; i < catListMatchMap.length; i++){ 
             for(var j = 0; j < plotPoints[catList.indexOf(catListMatchMap[i])].length; j++) {
                 var point = plotPoints[catList.indexOf(catListMatchMap[i])][j]; 
                 plotPointsMatchMap.push(point); 
             };
         };
-        //console.log(plotPointsMatchMap); 
         if (layerFlag) {
             map.removeLayer('points'); 
             map.removeSource('points'); 
@@ -191,18 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
             mkrList[i].remove()
         }; 
         mkrList.length = 0; 
-        /*
-        for(var i = 0; i < pointsListMatchMap.length; i++) {
-            var cur_loc = pointsListMatchMap[i].slice();
-            console.log(cur_loc)
-            var mkr = new mapboxgl.Marker().setLngLat([cur_loc[3], cur_loc[4]])
-            .addTo(map);
-            mkrList.push(mkr)
-        };
-        */
        for(var i = 0; i < plotPointsMatchMap.length; i++) {
             var cur_loc = plotPointsMatchMap[i].geometry.coordinates; 
-            //console.log(cur_loc);
             var mkr = new mapboxgl.Marker().setLngLat(cur_loc)
             .addTo(map);
             mkrList.push(mkr)
@@ -226,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .setHTML(`<div style="background-color: white;border-radius:10px;text-align:center;overflow:hidden;"><p style="color:black;">${feature.properties.title}</p><br><p style="color:black">${feature.properties.description}</p></div>`)
         .setLngLat(feature.geometry.coordinates)
         .addTo(map);
-        //console.log(feature.geometry.coordinates)
     });    
 
 
