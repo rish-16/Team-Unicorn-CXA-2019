@@ -68,21 +68,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    var catListMatch = []; 
+    var catListMatch = catList.slice(); 
     var pointsListMatch = []; 
     function updateResult(query) {
-       searchRes.innerHTML = ''; 
-       catListMatch.length = 0; 
-       pointsListMatch.length = 0; 
-        catList.map(function(catName){
+        searchRes.innerHTML = ''; 
+        pointsListMatch.length = 0; 
+        if(query.length == 0) {catListMatch = catList.slice();};
+        catListMatch.map(function(catName){
             query.toString().split(" ").map(function(word){
-                //console.log(word[1])
-                if(word.length > 1 && catName.toString().toLowerCase().indexOf(word[1].toLowerCase()) != -1){
-                    catListMatch.push(catName); 
-                    //console.log(catName.toString().split(" ")[1])
+                console.log(catListMatch)
+                //console.log(catName.toString().toLowerCase().indexOf(word[word.length-1].toLowerCase()))
+                /*
+                if(catListMatch.length == 0) {
+                    catListMatch = catList.slice();
+                };
+                */
+                if(word.length == 0 && catListMatch.length == 0) {
+                    catListMatch = catList.slice(); 
+                    return; 
+                } 
+                else if(word.length > 0 && word[word.length-1] != ' ' && catName.toString().toLowerCase().indexOf(word[word.length-1].toLowerCase()) == -1) {
+                    //console.log('index') 
+                    //console.log(catListMatch.indexOf(catName))
+                    console.log(catName.toString().toLowerCase())
+                    catListMatch.splice(catListMatch.indexOf(catName), 1); 
+                    //console.log(catListMatch)
                     //console.log(catName)
-                    //console.log(pointsList[catList.indexOf(catName)].length) 
-                    pointsList[catList.indexOf(catName)].map(function (algo){
+                };
+                catListMatch.map(function(catNameMatch) {
+                    pointsList[catList.indexOf(catNameMatch)].map(function (algo){
                         pointsListMatch.push(algo)
                         var newCell = document.createElement('div')
                         newCell.classList  = 'res-cell'
@@ -103,11 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         newCell.appendChild(newCellN)
                         searchRes.appendChild(newCell)
                         //console.log(newCell)
-                    })
-                }
-            })
-        })
-    }
+                    });
+                });
+            });
+        });
+    };
 
     map.on('load', function() {
         map.addSource('trafficSource', {
@@ -118,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addTraffic()
 
         searchBar.addEventListener('input', function(e) {
-            //.log(e.target.value)
+            //console.log(e.target.value)
             updateResult(e.target.value);
         });
         
