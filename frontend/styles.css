@@ -267,6 +267,14 @@ a {
     color: #54a0ff;
 }
 
+#customer i {
+    color: #5f27cd;
+}
+
+#repeating i {
+    color:#ff6b6b;
+}
+
 #sent-grid {
     width: 95%;
     height: 300px;
