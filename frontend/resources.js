@@ -12,44 +12,50 @@ firebase.initializeApp(firebaseConfig);
 document.addEventListener('DOMContentLoaded', () => {
 
     const searchBar = document.getElementById('searchbar');
-    const searchRes = document.getElementById('search-results');
+    var searchRes = document.getElementById('search-results'); 
     
-    var plotPoints = [];
-    var electricPoints = [];
-    var rubberAndPlastics = [];
-    var textiles = []
-    var chemical = []
-    var agriculture = []
+    var catList = ['Malaysian Agricultural Suppliers', 'Malaysian Chemical Suppliers', 'Malaysian Electric Suppliers', 'Malaysian Rubber and Plastic Suppliers', 'Malaysian Textile and Leather Suppliers']
 
-    var elecRef = firebase.database().ref('Malaysian Electric Suppliers').child('Company'); 
-    elecRef.on('value', snapshot => {
-        snapshot.forEach(element => {
-            cur = element.val()
-            console.log(cur)
-            electricPoints.push([cur.name, cur.info, cur.tel])
-            //console.log(electricPoints)
-            var newPoint = {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [cur.lon, cur.lat]
-                },
-                "properties": {
-                    "title": cur.name,
-                    "icon": "marker", 
-                    "description": cur.info
+    var plotPoints = []; //list of geojson object for map plotting
+    var pointsList = []; //list containing all data from database 
+
+    for(var i = 0; i < catList.length; i++){
+        var catPlotPoints = []; //category wise list of geojson object for map plotting
+        var catPointList = []; //category wise list containing all data from database 
+        var catRef = firebase.database().ref(catList[i]).child('Company'); 
+        //console.log(catList[i]); 
+        catRef.on('value', snapshot => {
+            catPlotPoints.length = 0; 
+            catPointList.length = 0; 
+            snapshot.forEach(element => {
+                cur = element.val()
+                catPointList.push([cur.name, cur.info, cur.tel, cur.lon, cur.lat])
+                var newPoint = {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [cur.lon, cur.lat]
+                    },
+                    "properties": {
+                        "title": cur.name,
+                        "icon": "marker", 
+                        "description": cur.info
+                    }
                 }
-            }
-            plotPoints.push(newPoint)
+                catPlotPoints.push(newPoint)
+            });
+            plotPoints.push(catPlotPoints.slice())
+            pointsList.push(catPointList.slice()) 
+            //console.log(pointsList) 
         });
-    })
+    };
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibC15IiwiYSI6ImNqeHNjajVpejBpZjAzaHFveHQ2bGdocGYifQ.rqNTiie-ua4VjuyDYNH6JA'; // replace this with your access token
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [101.6129, 3.1568], //centre of singapore
-        zoom: 12
+        zoom: 10
     }); 
 
     function addTraffic() {
@@ -62,29 +68,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    var catListMatch = []; 
+    var pointsListMatch = []; 
     function updateResult(query) {
-        electricPoints.map(function(algo){
+       searchRes.innerHTML = ''; 
+       catListMatch.length = 0; 
+       pointsListMatch.length = 0; 
+        catList.map(function(catName){
             query.toString().split(" ").map(function(word){
-                if (algo.toString().toLowerCase().indexOf(word[1].toLowerCase()) != -1){
-                    console.log('yes')
-                    var newCell = document.createElement('div')
-                    newCell.classList  = 'res-cell'
-                    var newCellP = document.createElement('p')
-                    newCellP.classList = 'res-cell-text'
-                    var newCellD = document.createElement('p')
-                    newCellD.classList = 'res-cell-desc'
-                    var newCellN = document.createElement('p')
-                    newCellN.classList = 'res-cell-num'
-                    
-                    var cur = Object(algo);
-                    newCellP.innerHTML = cur[0]
-                    newCellD.innerHTML = cur[1]
-                    newCellN.innerHTML = '<a href="tel:' + cur[2] + '">'  + cur[2] + '</a>'
-                    
-                    newCell.appendChild(newCellP)
-                    newCell.appendChild(newCellD)
-                    newCell.appendChild(newCellN)
-                    searchRes.appendChild(newCell)
+                //console.log(word[1])
+                if(word.length > 1 && catName.toString().toLowerCase().indexOf(word[1].toLowerCase()) != -1){
+                    catListMatch.push(catName); 
+                    //console.log(catName.toString().split(" ")[1])
+                    //console.log(catName)
+                    //console.log(pointsList[catList.indexOf(catName)].length) 
+                    pointsList[catList.indexOf(catName)].map(function (algo){
+                        pointsListMatch.push(algo)
+                        var newCell = document.createElement('div')
+                        newCell.classList  = 'res-cell'
+                        var newCellP = document.createElement('p')
+                        newCellP.classList = 'res-cell-text'
+                        var newCellD = document.createElement('p')
+                        newCellD.classList = 'res-cell-desc'
+                        var newCellN = document.createElement('p')
+                        newCellN.classList = 'res-cell-num'
+                        
+                        var cur = Object(algo);
+                        newCellP.innerHTML = cur[0]
+                        newCellD.innerHTML = cur[1]
+                        newCellN.innerHTML = '<a href="tel:' + cur[2] + '">'  + cur[2] + '</a>'
+                        
+                        newCell.appendChild(newCellP)
+                        newCell.appendChild(newCellD)
+                        newCell.appendChild(newCellN)
+                        searchRes.appendChild(newCell)
+                        //console.log(newCell)
+                    })
                 }
             })
         })
@@ -96,12 +115,38 @@ document.addEventListener('DOMContentLoaded', () => {
             url: 'mapbox://mapbox.mapbox-traffic-v1'
         });
 
-        // addTraffic()
+        addTraffic()
 
         searchBar.addEventListener('input', function(e) {
-            console.log(e.target.value)
+            //.log(e.target.value)
             updateResult(e.target.value);
         });
+        
+    });
+
+    var mkrList = [];
+    var layerFlag = false; 
+
+    var searchButton = document.getElementById('search-button')
+    searchButton.addEventListener("click", function refreshMap() {
+        var catListMatchMap = catListMatch.slice();
+        var pointsListMatchMap = pointsListMatch.slice();  
+        //console.log(catListMatchMap.length); 
+        //console.log(pointsListMatchMap.length); 
+
+        var plotPointsMatchMap = [];
+        //console.log(plotPoints)
+        for(var i = 0; i < catListMatchMap.length; i++){ 
+            for(var j = 0; j < plotPoints[catList.indexOf(catListMatchMap[i])].length; j++) {
+                var point = plotPoints[catList.indexOf(catListMatchMap[i])][j]; 
+                plotPointsMatchMap.push(point); 
+            };
+        };
+        //console.log(plotPointsMatchMap); 
+        if (layerFlag) {
+            map.removeLayer('points'); 
+            map.removeSource('points'); 
+        }; 
 
         map.addLayer({
             "id": "points",
@@ -110,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "type": "geojson",
                 "data": {
                     "type": "FeatureCollection",
-                    "features": plotPoints
+                    "features": plotPointsMatchMap
                 }
             },
             "layout": {
@@ -120,19 +165,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 "text-offset": [0, 0.6],
                 "text-anchor": "top"
             },
-            properties: {
+            "properties": {
                 'marker-color': '#3bb2d0',
                 'marker-size': 'large',
                 'marker-symbol': 'rocket'
             }
         });
+        layerFlag = true; 
+
+        for(var i = 0; i < mkrList.length; i++) {
+            mkrList[i].remove()
+        }; 
+        mkrList.length = 0; 
         /*
-        for (var i = 0; i < electricPoints.length; i++) {
-            var cur_loc = electricPoints[i]
-            var mkr = new mapboxgl.Marker().setLngLat([cur_loc["geometry"]["coordinates"]])
+        for(var i = 0; i < pointsListMatchMap.length; i++) {
+            var cur_loc = pointsListMatchMap[i].slice();
+            console.log(cur_loc)
+            var mkr = new mapboxgl.Marker().setLngLat([cur_loc[3], cur_loc[4]])
             .addTo(map);
-        }
+            mkrList.push(mkr)
+        };
         */
+       for(var i = 0; i < plotPointsMatchMap.length; i++) {
+            var cur_loc = plotPointsMatchMap[i].geometry.coordinates; 
+            //console.log(cur_loc);
+            var mkr = new mapboxgl.Marker().setLngLat(cur_loc)
+            .addTo(map);
+            mkrList.push(mkr)
+       }
+        
+            
     });
 
     map.on('click', function(e){
@@ -150,6 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .setHTML(`<div style="background-color: white;border-radius:10px;text-align:center;overflow:hidden;"><p style="color:black;">${feature.properties.title}</p><br><p style="color:black">${feature.properties.description}</p></div>`)
         .setLngLat(feature.geometry.coordinates)
         .addTo(map);
-        console.log(feature.geometry.coordinates)
+        //console.log(feature.geometry.coordinates)
     });    
+
+
+    
 })
