@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     .deleteAll()
                     .pauseFor(randomPause)
                     .start();
+
             })
         })   
     }

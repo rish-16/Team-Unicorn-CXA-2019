@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     snapshot.forEach(element => {
                         var row = document.createElement('div')
                         row.classList += 'ss-row'
-        
+                  
                         element.forEach(cell => {
                             var newCell = document.createElement('ss-cell')
                             var newCellTitle = document.createElement('p')
@@ -96,7 +96,21 @@ document.addEventListener('DOMContentLoaded', function() {
                             status.style.backgroundColor = '#ff6b6b'
                             statusCell.appendChild(status)
                             row.appendChild(statusCell)
-                        } else {
+
+                            console.log("hii")
+                            new Noty({
+                               type: 'error',
+                               layout: 'topRight',
+                               theme: 'nest',
+                               text: 'You are running low on ' + element.val()[0] + ". You can order it under the Resources tab.",
+                               timeout: '6000',
+                               progressBar: false,
+                               closeWith: ['click'],
+                               killer: true,
+                            }).show();
+
+                             } 
+                            else {
                             var statusCell = document.createElement('div')
                             statusCell.classList += 'cell'
                             var status = document.createElement('div')
@@ -117,4 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
         fileBtn.click();
         fileBtn.addEventListener('change', handleFile, false);
     });
+
+
+let log = document.getElementById('noti');
+
+
+
 });
