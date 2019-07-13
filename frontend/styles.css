@@ -311,10 +311,13 @@ a {
 
 #trending {
     width: 95%;
-    height: 350px;
+    height: 310px;
     margin: 50px auto 20px auto;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 }
 
 #trending #trending-header {
