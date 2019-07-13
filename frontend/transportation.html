@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<script src="https://kit.fontawesome.com/4467197cc4.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="transportation.css">
         
         <script src='https://api.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet'>
         <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
         <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+        
+        <title>Cruze | Resources</title>
     </head>
     <body>
-        <p>Location: <input type="textbox" id="departure"></p>
-        <p>Destination: <input type="textbox" id="destination"></p>
-        <p>Weight: <input type="number" id="weight"> </p>
+        <div id="header">
+            <p id="logo">Cr<span>uze</span></p>
+            <div id="nav">
+                <p id="dashboard-page" onclick="window.location='index.html'">Dashboard</p>
+                <p style="color: #2f3542;font-weight: bold;"  id="marketplace-page" onclick="window.location='services.html'">Services</p>
+                <p id="resource-map-page" onclick="window.location='resources.html'">Resources</p>
+            </div>
+            <div id="user">
+                <p><i class="fas fa-store-alt"></i>IKEA MSIA</p>
+            </div>
+        </div>
+
+
+        <div id="dashboard">
+            <div id="services">
+                <div id="services-db">
+                        <div class="transMode">
+                            <div class="transItem" id="airButton">Air</div>
+                            <div class="transItem" id="landButton">Land</div>
+                            <div class="transItem" id="shipButton">Ship</div>
+                        </div>
+                    <p class="searchItem">Location: <input type="textbox" class="searchbar" id="departure"></p>
+                    <p class="searchItem">Destination: <input type="textbox" class="searchbar" id="destination"></p>
+                    <p class="searchItem">Weight: <input type="number" class="searchbar" id="weight"> </p>
+                    <div id="submitButton"></div>
+                </div>
+            </div>
+        </div>
+
+
         
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script> 

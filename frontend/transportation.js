@@ -11,22 +11,10 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 console.log(firebase)
 
-var airButton = document.createElement("button") 
-airButton.innerHTML = "Air" 
-document.body.appendChild(airButton)
-
-var landButton = document.createElement("button") 
-landButton.innerHTML = "Land" 
-document.body.appendChild(landButton)
-
-var shipButton = document.createElement("button") 
-shipButton.innerHTML = "Shipping" 
-document.body.appendChild(shipButton)
-
-
-var submitButton = document.createElement("button") 
-submitButton.innerHTML = "Submit" 
-document.body.appendChild(submitButton) 
+var airButton = document.getElementById("airButton") 
+var landButton = document.getElementById("landButton") 
+var shipButton = document.getElementById("landButton") 
+var submitButton = document.getElementById("submitButton") 
 
 /*
 mapboxgl.accessToken = 'pk.eyJ1IjoibC15IiwiYSI6ImNqeHNjajVpejBpZjAzaHFveHQ2bGdocGYifQ.rqNTiie-ua4VjuyDYNH6JA'; // replace this with your access token
@@ -88,7 +76,7 @@ function errorData(err) {
     console.log(err)
 }
 
-submitButton.onclick = function() {
+submitButton.addEventListener("click", function() {
     for( var i = 0; i < fares.length; i++) {
         var para = document.createElement('P');
         var dis = 516.2; 
@@ -98,4 +86,4 @@ submitButton.onclick = function() {
         document.body.appendChild(para); 
     }
     
-};
+});
